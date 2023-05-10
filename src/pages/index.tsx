@@ -1,118 +1,111 @@
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
+import Head from 'next/head'
+import Header from '../components/Header'
+import Hero from '../components/Hero'
+import About from '../components/About'
+import WorkExperience from '../components/WorkExperience'
+import Skills from '../components/Skills'
+import Projects from '../components/Projects'
+import ContactMe from '../components/ContactMe'
+import Link from 'next/link'
+import { GetStaticProps } from 'next'
+import { PageInfo } from '../../types/pageInfo'
+import { Experiences } from '../../types/experiences'
+import { Projects as ProjectType } from '../../types/projects'
+import { Skills as SkillType } from '../../types/skills'
+import { Socials } from '../../types/socials'
+import { fetchPageInfo } from './api/fetchPageInfo'
+import { fetchExperience } from './api/fetchExperience'
+import { fetchSkills } from './api//fetchSkills'
+import { fetchProjects } from './api//fetchProjects'
+import { fetchSocials } from './api/fetchSocials'
+import Image from 'next/image'
+import getConfig from 'next/config';
 
-const inter = Inter({ subsets: ['latin'] })
+const { serverRuntimeConfig } = getConfig();
 
-export default function Home() {
+type Props = {
+  pageInfo: PageInfo,
+  experiences: Experiences[],
+  skills: SkillType[],
+  projects: ProjectType[],
+  socials: Socials[],
+  strapi: string,
+}
+
+const Home = ({pageInfo, experiences, projects, skills, socials, strapi}: Props) => {
+  const title = `${pageInfo?.attributes?.name} - Portfolio`
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/pages/index.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <div className="bg-[rgb(36,36,36)] text-white h-screen scroll-smooth snap-y snap-mandatory overflow-y-scroll overflow-x-hidden z-0 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#FF00FF]/80">
+      <Head>
+        <title>{title}</title>
+      </Head>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <Header socials={socials}/>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+      <section id="hero" className="snap-center">
+        <Hero pageInfo={pageInfo} strapi={strapi}/>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      <section id="about" className="snap-center">
+        <About pageInfo={pageInfo} strapi={strapi}/>
+      </section>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Discover and deploy boilerplate example Next.js&nbsp;projects.
-          </p>
-        </a>
+      <section id="experience" className="snap-center">
+        <WorkExperience experiences={experiences} strapi={strapi}/>
+      </section>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      <section id="skills" className="snap-start">
+        <Skills skills={skills} strapi={strapi}/>
+      </section>
+
+      <section id="projects" className="snap-start">
+        <Projects projects={projects} strapi={strapi}/>
+      </section>
+
+      <section id="contact" className="snap-start">
+        <ContactMe pageInfo={pageInfo}/>
+      </section>
+
+      <Link href="#hero">
+        <footer className="sticky bottom-5">
+          <div className="flex items-center justify-center ">
+            <div className="relative h-10 w-10 filter grayscale hover:grayscale-0 curser-pointer">
+              <Image 
+                  src={`${strapi}`+`${pageInfo?.attributes?.heroImage?.data?.attributes?.url}`}
+                  alt=''
+                  fill
+                  sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
+                  priority
+                  className="rounded-full object-cover"
+              />
+            </div>
+          </div>
+        </footer>
+      </Link>
+    </div>    
   )
+}
+
+export default Home
+
+export const getStaticProps: GetStaticProps<Props> = async() => {
+  const pageInfo: any = await fetchPageInfo()
+  const experiences: Experiences[] = await fetchExperience()
+  const skills: SkillType[] = await fetchSkills()
+  const projects: ProjectType[] = await fetchProjects()
+  const socials: Socials[] = await fetchSocials()
+  const strapi: any = serverRuntimeConfig.STRAPI_BASE_URL
+
+  return {
+    props: {
+      pageInfo,
+      experiences,
+      skills,
+      projects,
+      socials,
+      strapi
+    },
+    revalidate: 10,
+  }
 }
