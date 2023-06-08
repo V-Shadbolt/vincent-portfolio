@@ -8,7 +8,7 @@ axiosRetry(axios, { retries: 3 })
 
 export const fetchExperience = async () => {
   try {
-    const url = `${serverRuntimeConfig.STRAPI_BASE_URL}/api/experiences?populate=companyImage&populate[1]=points&populate[2]=technologies.image`;
+    const url = `${serverRuntimeConfig.STRAPI_BASE_URL}/api/experiences?populate=companyImage&populate[1]=points&populate[2]=technologies.image&sort=dateStarted%3Adesc`;
     const config = {
       headers: { Authorization: `Bearer ${serverRuntimeConfig.STRAPI_API_KEY}` }
     };

@@ -5,7 +5,11 @@ module.exports = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api.shadbolt.ca',
+        hostname: 'api.vincentshadbolt.ca',
+      },
+      {
+        protocol: 'https',
+        hostname: 'api.vincentshadbolt.caundefined',
       },
     ],
   },

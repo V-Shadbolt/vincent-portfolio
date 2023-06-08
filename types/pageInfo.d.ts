@@ -13,6 +13,7 @@ export interface PageInfo {
         heroImage:             HeroImage;
         profilePic:            HeroImage;
         socials:               Socials[];
+        rotatingTexts:          RotatingTexts[];
     },
 }
 
@@ -68,4 +69,10 @@ export interface Socials {
             publishedAt: Date;
         },
     ]
+}
+
+export interface RotatingTexts {
+    id:          number;
+    __component: string;
+    rotatingText:       string;
 }
