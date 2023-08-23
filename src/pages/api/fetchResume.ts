@@ -15,7 +15,7 @@ export const fetchResume = async () => {
     const res = await axios.get(url,config);
 
     //console.log("fetching ", res.data.data)
-    console.log(res.data.data.attributes.resume.data.attributes.url)
+    //console.log(res.data.data.attributes.resume.data.attributes.url)
 
     return res.data.data;
   } catch (err) {
