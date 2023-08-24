@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Experiences } from '../../types/experiences'
 import Image from 'next/image'
 
@@ -8,20 +8,14 @@ type Props = {
 }
 
 function ExperienceCard({experience, strapi}: Props) {
-const [date, setDate] = useState('');
-
-  useEffect(() => {
-    const startDate = new Date(experience?.attributes?.dateStarted).getFullYear() + ' - ' 
-    const endDate = experience?.attributes?.isCurrentlyWorkingHere 
-                ? "Present"
-                : new Date(experience?.attributes?.dateEnded).getFullYear()
-    setDate(startDate + endDate);
-  }, []);
 
   return (
     <div className="flex justify-left gap-4 mb-12">
         <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-[#F2C4CE] w-1/4">
-            {date}
+            {new Date(experience?.attributes?.dateStarted).getFullYear()} -{" "} 
+                {experience?.attributes?.isCurrentlyWorkingHere 
+                ? "Present"
+                : new Date(experience?.attributes?.dateEnded).getFullYear()}
         </header>
         <div className="z-10 sm:col-span-6 w-3/4">
             <h3 className="font-medium leading-snug text-[#F58F7C]">
