@@ -31,7 +31,7 @@ type Props = {
 const Home = ({pageInfo, resume, experiences, projects, socials, strapi}: Props) => {
   const title = `${pageInfo?.attributes?.name} - Portfolio`
   return (
-    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0">
+    <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 caret-transparent">
 
       <Head>
         <title>{title}</title>
@@ -56,27 +56,27 @@ const Home = ({pageInfo, resume, experiences, projects, socials, strapi}: Props)
 
           <footer className="w-full pb-16 text-xs text-[#4F4F51] sm:pb-0 text-left">
             <p>Design inspired by {' '}
-              <Link href="https://brittanychiang.com/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://brittanychiang.com/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button>Brittany Chiang</button>
               </Link>
               {' '} and coded in {' '}
-              <Link href="https://code.visualstudio.com/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://code.visualstudio.com/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button> Visual Studio Code</button>
               </Link>
               . Built with {' '}
-              <Link href="https://nextjs.org/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://nextjs.org/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button> Next.js</button>
               </Link>
               {' '} and {' '}
-              <Link href="https://tailwindcss.com/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://tailwindcss.com/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button> Tailwind CSS</button>
               </Link>
               . Selfhosted with a {' '}
-              <Link href="https://strapi.io/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://strapi.io/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button> Strapi</button>
               </Link>
               {' '} Backend. All text is set in the {' '}
-              <Link href="https://rsms.me/inter/" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
+              <Link href="https://rsms.me/inter/" rel="noopener noreferrer" target="_blank" className="font-medium text-[#F58F7C]/75 hover:text-[#F2C4CE] focus-visible:text-[#F2C4CE]">
                   <button>Inter</button>
               </Link>
               {' '} typeface

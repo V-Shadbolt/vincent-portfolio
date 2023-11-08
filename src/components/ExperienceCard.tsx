@@ -22,7 +22,6 @@ function ExperienceCard({experience, strapi}: Props) {
                 <span>{experience?.attributes?.jobTitle} · </span>
                 <span className="inline-block">{experience?.attributes?.company}</span>
             </h3>
-            <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block"></span>
             <ul className="mt-2 text-sm leading-normal">
                 {experience?.attributes?.points.map((point, i) => (
                     <li key={i}>{point?.point}</li>
