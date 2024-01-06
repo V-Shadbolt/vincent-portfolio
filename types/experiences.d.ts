@@ -12,6 +12,7 @@ export interface Experiences {
         companyImage:           CompanyImage;
         points:                 Points[];
         technologies:           Technologies;
+        linkToSite:             null;
     }
 }
 

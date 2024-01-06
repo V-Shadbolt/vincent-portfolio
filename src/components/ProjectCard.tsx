@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { Projects } from '../../types/projects'
+import Link from 'next/link'
 
 type Props = {
     project: Projects
@@ -23,7 +24,9 @@ function ProjectCard({project, strapi}: Props) {
             <h3 className="font-medium leading-snug text-[#F58F7C]">
                 <span>{project?.attributes?.title}</span>
             </h3>
-             
+            {project?.attributes?.linkToBuild && <Link href={project?.attributes?.linkToBuild} target="_blank">
+                <span className="mt-2 text-sm leading-normal text-[#F2C4CE]">View Here</span>
+            </Link>}
             <p className="mt-2 text-sm leading-normal">
                 {project?.attributes?.summary}
             </p>

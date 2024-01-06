@@ -1,6 +1,7 @@
 import React from 'react'
 import { Experiences } from '../../types/experiences'
 import Image from 'next/image'
+import Link from 'next/link'
 
 type Props = {
     experience: Experiences
@@ -22,6 +23,9 @@ function ExperienceCard({experience, strapi}: Props) {
                 <span>{experience?.attributes?.jobTitle} · </span>
                 <span className="inline-block">{experience?.attributes?.company}</span>
             </h3>
+            {experience?.attributes?.linkToSite && <Link href={experience?.attributes?.linkToSite} target="_blank">
+                <span className="mt-2 text-sm leading-normal text-[#F2C4CE]">Company Website</span>
+            </Link>}
             <ul className="mt-2 text-sm leading-normal">
                 {experience?.attributes?.points.map((point, i) => (
                     <li key={i}>{point?.point}</li>

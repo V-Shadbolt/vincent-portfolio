@@ -25,7 +25,7 @@ function Experiences({experiences, resume, strapi}: Props) {
             </div>
         </div>
         <div className="flex justify-center pt-3">
-            <Link href={`${strapi}`+`${resume?.attributes?.resume?.data?.attributes?.url}`}>
+            <Link href={`${strapi}`+`${resume?.attributes?.resume?.data?.attributes?.url}`} target="_blank">
                 <span className="font-semibold leading-tight text-[#D6D6D6]">View Full Resume</span>
             </Link>
         </div>
