@@ -40,7 +40,7 @@ function Header({socials, pageInfo, strapi}: Props) {
             <div className="flex gap-3">
                 <div className="relative mt-4 h-32 w-32 mx-w-xs">
                     <Image 
-                        src={`${strapi}`+`${pageInfo?.attributes?.heroImage?.data?.attributes?.url}`}
+                        src={`${strapi}`+`${pageInfo?.attributes?.heroImage?.data?.attributes?.url || ''}`}
                         alt=''
                         fill
                         className="rounded-lg object-cover"

@@ -13,7 +13,7 @@ function ProjectCard({project, strapi}: Props) {
     <div className="flex justify-left gap-4 mb-12">
         <div className="relative w-1/4 h-auto z-10 mb-2 mt-0">
             <Image 
-                src={`${strapi}`+`${project?.attributes?.image?.data?.attributes?.url}`}
+                src={`${strapi}`+`${project?.attributes?.image?.data?.attributes?.url || ''}`}
                 alt=''
                 fill
                 className="rounded-lg object-contain"
@@ -30,14 +30,14 @@ function ProjectCard({project, strapi}: Props) {
             <p className="mt-2 text-sm leading-normal">
                 {project?.attributes?.summary}
             </p>
-            <div className="relative flex space-x-2 my-2">
+            <div className="relative grid grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-y-2">
                 {project?.attributes?.technologies?.data.map(technology => (
                     <div 
                     key={technology?.id}
                     className="relative h-7 w-7 md:h-8 md:w-8"
                     >
                         <Image 
-                            src={`${strapi}`+`${technology?.attributes?.image?.data?.attributes?.url}`}
+                            src={`${strapi}`+`${technology?.attributes?.image?.data?.attributes?.url || ''}`}
                             alt=''
                             fill
                             sizes="(max-width: 768px) 100vw,(max-width: 1200px) 50vw,33vw"
