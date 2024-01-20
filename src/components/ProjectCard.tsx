@@ -27,7 +27,7 @@ function ProjectCard({project, strapi}: Props) {
             {project?.attributes?.linkToBuild && <Link href={project?.attributes?.linkToBuild} target="_blank">
                 <span className="mt-2 text-sm leading-normal text-[#F2C4CE]">View Here</span>
             </Link>}
-            <p className="mt-2 text-sm leading-normal">
+            <p className="mt-2 mb-2 text-sm leading-normal">
                 {project?.attributes?.summary}
             </p>
             <div className="relative grid grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-y-2">
