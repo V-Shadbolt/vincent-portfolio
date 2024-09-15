@@ -3,7 +3,8 @@ export interface Projects {
     attributes: {
         title:        string;
         summary:      string;
-        linkToBuild:  null;
+        linkToBuild:  string;
+        date:         string;
         createdAt:    Date;
         updatedAt:    Date;
         publishedAt:  Date;
