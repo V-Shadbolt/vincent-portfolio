@@ -8,7 +8,7 @@ axiosRetry(axios, { retries: 3 })
 
 export const fetchProjects = async () => {
   try{
-    const url = `${serverRuntimeConfig.STRAPI_BASE_URL}/api/projects?populate=image&populate[1]=technologies.image`;
+    const url = `${serverRuntimeConfig.STRAPI_BASE_URL}/api/projects?populate=image&populate[1]=technologies.image&sort=date%3Adesc`;
     const config = {
       headers: { Authorization: `Bearer ${serverRuntimeConfig.STRAPI_API_KEY}` }
     };
