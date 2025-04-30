@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
-module.exports = {
+const { withPlausibleProxy } = require('next-plausible')
+
+module.exports = withPlausibleProxy({
+  customDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_CUSTOM_DOMAIN,
+})({
   reactStrictMode: true,
   images: {
     remotePatterns: [
@@ -19,4 +23,4 @@ module.exports = {
     STRAPI_API_KEY: process.env.STRAPI_API_KEY || '',
   },
   output: 'standalone',
-}
+})

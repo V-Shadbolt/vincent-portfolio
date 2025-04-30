@@ -16,6 +16,7 @@ import { fetchSocials } from './api/fetchSocials'
 import getConfig from 'next/config';
 import { ResumeDoc } from '../../types/resume'
 import { fetchResume } from './api/fetchResume'
+import { usePlausible } from 'next-plausible'
 
 const { serverRuntimeConfig } = getConfig();
 
@@ -30,6 +31,8 @@ type Props = {
 
 const Home = ({pageInfo, resume, experiences, projects, socials, strapi}: Props) => {
   const title = `${pageInfo?.attributes?.name} - Portfolio`
+  const plausible = usePlausible()
+
   return (
     <div className="mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-20 lg:px-24 lg:py-0 caret-transparent">
 
@@ -47,7 +50,7 @@ const Home = ({pageInfo, resume, experiences, projects, socials, strapi}: Props)
           </section>
 
           <section id="experience" className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">
-            <Experiences experiences={experiences} strapi={strapi} resume={resume}/>
+            <Experiences experiences={experiences} strapi={strapi} resume={resume} plausible={plausible}/>
           </section>
 
           <section id="projects" className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24">

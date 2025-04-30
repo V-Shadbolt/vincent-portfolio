@@ -8,9 +8,21 @@ type Props = {
     experiences: ExperienceType[]
     resume: ResumeDoc
     strapi: any
+    plausible: any
 }
 
-function Experiences({experiences, resume, strapi}: Props) {
+function Experiences({experiences, resume, strapi, plausible}: Props) {
+
+  const handleResumeClick = () => {
+    if (plausible) {
+      plausible('ResumeDownload', {
+        props: {
+          path: resume?.attributes?.resume?.data?.attributes?.url || '',
+          source: 'experience section'
+        }
+      });
+    }
+  };
 
   return (
     <div>
@@ -25,7 +37,11 @@ function Experiences({experiences, resume, strapi}: Props) {
             </div>
         </div>
         <div className="flex justify-center pt-3">
-            <Link href={`${strapi}`+`${resume?.attributes?.resume?.data?.attributes?.url || ''}`} target="_blank">
+            <Link 
+              href={`${strapi}`+`${resume?.attributes?.resume?.data?.attributes?.url || ''}`} 
+              target="_blank"
+              onClick={handleResumeClick}
+            >
                 <span className="font-semibold leading-tight text-[#D6D6D6]">View Full Resume</span>
             </Link>
         </div>
